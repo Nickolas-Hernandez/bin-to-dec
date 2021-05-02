@@ -9847,6 +9847,60 @@ var Ue = function () {
 
 /***/ }),
 
+/***/ "./src/converter-styles.jsx":
+/*!**********************************!*\
+  !*** ./src/converter-styles.jsx ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Container": () => (/* binding */ Container),
+/* harmony export */   "Decimal": () => (/* binding */ Decimal),
+/* harmony export */   "Prompt": () => (/* binding */ Prompt),
+/* harmony export */   "BinaryInput": () => (/* binding */ BinaryInput)
+/* harmony export */ });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+
+const Container = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div`
+  width: 100%;
+  height: 100vh;
+  font-family: 'Quicksand', sans-seriff;
+  color: white;
+  background: linear-gradient(to top, #F2994A, #F2C94C);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3.5rem;
+`;
+const Decimal = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.h1`
+  font-size: 64px;
+`;
+const Prompt = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.h2`
+  font-size: 24px;
+  max-width: 75%;
+  text-align: center;
+  @media screen and (min-width: 750px){
+    font-size: 28px;
+  }
+`;
+const BinaryInput = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.input`
+  width: 75%;
+  max-width: 500px;
+  height: 32px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 1.2rem;
+  font-size: 24px;
+  font-weight: 500;
+`;
+
+
+/***/ }),
+
 /***/ "./src/converter.jsx":
 /*!***************************!*\
   !*** ./src/converter.jsx ***!
@@ -9859,58 +9913,103 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Converter)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _error_message__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./error-message */ "./src/error-message.jsx");
+/* harmony import */ var _converter_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./converter-styles */ "./src/converter-styles.jsx");
 
 
-const Container = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div`
-  width: 100%;
-  height: 100vh;
-  font-size: 64px;
-  font-family: 'Quicksand', sans-seriff;
-  color: white;
-  background: linear-gradient(to top, #F2994A, #F2C94C);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 3.5rem;
-`;
-const Decimal = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.h1`
-  font-size: 64px;
-`;
-const Prompt = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.h2`
-  font-size: 24px;
-  max-width: 75%;
-  text-align: center;
-`;
-const BinaryInput = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.input`
-  width: 75%;
-  height: 30px;
-  border: none;
-  outline: none;
-  border-radius: 4px;
-  text-align: center;
-  margin-top: 1.2rem;
-  font-size: 24px;
-  font-weight: 500;
-`;
+
 class Converter extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   constructor(props) {
     super(props);
     this.state = {
-      decimal: 0
+      decimal: 0,
+      notify: false
     };
     this.binToDec = this.binToDec.bind(this);
   }
 
-  binToDec() {}
+  binToDec(event) {
+    this.setState({
+      notify: false
+    });
+    const input = event.target.value;
+    if (input === '') this.setState({
+      decimal: 0
+    });
+    const regex = /[^10]/i;
+
+    if (regex.test(input)) {
+      this.setState({
+        decimal: 0,
+        notify: true
+      });
+      throw new Error("Invalid Input. Binary must only consist of 1's and 0's");
+    }
+
+    let decimal = 0;
+
+    for (let i = 0; i < input.length; i++) {
+      decimal = decimal * 2 + parseInt(input[i]);
+      this.setState({
+        decimal: decimal
+      });
+    }
+  }
 
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Decimal, null, this.state.decimal), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Prompt, null, "Please Enter an 8-Bit Binary Number:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(BinaryInput, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_converter_styles__WEBPACK_IMPORTED_MODULE_2__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_error_message__WEBPACK_IMPORTED_MODULE_1__.default, {
+      notify: this.state.notify
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_converter_styles__WEBPACK_IMPORTED_MODULE_2__.Decimal, null, this.state.decimal), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_converter_styles__WEBPACK_IMPORTED_MODULE_2__.Prompt, null, "Please Enter an 8-Bit Binary Number:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_converter_styles__WEBPACK_IMPORTED_MODULE_2__.BinaryInput, {
       onChange: this.binToDec,
       maxLength: "8"
     }));
   }
 
+}
+
+/***/ }),
+
+/***/ "./src/error-message.jsx":
+/*!*******************************!*\
+  !*** ./src/error-message.jsx ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ErrorMessage)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+
+
+const Notification = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div`
+  width: 100%;
+  max-width: 500px;
+  height: 50px;
+  background-color:white;
+  position: absolute;
+  top: -55px;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(255,175,77,0.9);
+  background: #ffaf4d;
+  transition: transform 0.2s linear;
+  transform: ${props => props.notify ? "translateY(110%)" : ''};
+`;
+const Wrap = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.span`
+  color: #dc1010;
+`;
+function ErrorMessage(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Notification, {
+    notify: props.notify
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Wrap, null, "Invalid Input."), " Binary consist of 1's and 0's only."));
 }
 
 /***/ })
