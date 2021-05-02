@@ -9959,21 +9959,28 @@ __webpack_require__.r(__webpack_exports__);
 
 const Notification = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div`
   width: 100%;
+  max-width: 500px;
   height: 50px;
   background-color:white;
   position: absolute;
-  top: 0;
-  color: #e82a00;
+  top: -55px;
+  color: white;
   font-size: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  box-shadow: 0 4px 10px #F2994A;
-  background: #f5ab6a;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(255,175,77,0.9);
+  background: #ffaf4d;
+  transition: transform 0.5s linear;
+  transform: ${props => props.notify ? "translateY(110%)" : ''};
+`;
+const Wrap = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.span`
+  color: #dc1010;
 `;
 function ErrorMessage(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Notification, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Invalid Input. Binary only consists of 1's and 0's."));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Notification, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Wrap, null, "Invalid Input."), " Binary consist of 1's and 0's only."));
 }
 
 /***/ })
