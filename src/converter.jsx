@@ -7,14 +7,24 @@ const Container = styled.div`
   font-size: 64px;
   font-family: 'Quicksand', sans-seriff;
   color: white;
-  background: linear-gradient(#F2994A, #F2C94C)
+  background: linear-gradient(to top, #F2994A, #F2C94C);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3.5rem;
+`;
+
+const Decimal = styled.h1`
+  font-size: 64px;
 `;
 
 export default class Converter extends React.Component {
 
   render(){
     return (
-      <Container></Container>
+      <Container>
+        <Decimal>0</Decimal>
+      </Container>
     );
   }
 }
