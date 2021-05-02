@@ -9913,6 +9913,15 @@ class Converter extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       });
       return;
     }
+
+    let decimal = 0;
+
+    for (let i = 0; i < input.length; i++) {
+      decimal = decimal * 2 + parseInt(input[i]);
+      this.setState({
+        decimal: decimal
+      });
+    }
   }
 
   render() {

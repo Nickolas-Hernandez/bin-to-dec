@@ -51,15 +51,20 @@ export default class Converter extends React.Component {
       this.setState({decimal: 0});
       return;
     }
-
+    let decimal = 0;
+    for(let i = 0; i < input.length; i++){
+      decimal = decimal * 2 + parseInt(input[i]);
+      this.setState({decimal: decimal});
   }
+    }
+
 
   render(){
     return (
       <Container>
         <Decimal>{this.state.decimal}</Decimal>
         <Prompt>Please Enter an 8-Bit Binary Number:</Prompt>
-        <BinaryInput onChange={this.binToDec} maxLength='8' ></BinaryInput>
+        <BinaryInput onChange={this.binToDec} maxLength='8'></BinaryInput>
       </Container>
     );
   }
