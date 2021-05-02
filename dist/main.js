@@ -9877,9 +9877,14 @@ const Container = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div`
 const Decimal = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.h1`
   font-size: 64px;
 `;
+const Prompt = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.h2`
+  font-size: 24px;
+  max-width: 75%;
+  text-align: center;
+`;
 class Converter extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Decimal, null, "0"));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Decimal, null, "0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Prompt, null, "Please Enter an 8-Bit Binary Number:"));
   }
 
 }
