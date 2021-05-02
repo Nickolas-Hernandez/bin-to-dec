@@ -9902,12 +9902,16 @@ class Converter extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   constructor(props) {
     super(props);
     this.state = {
-      decimal: 0
+      decimal: 0,
+      notify: false
     };
     this.binToDec = this.binToDec.bind(this);
   }
 
   binToDec(event) {
+    this.setState({
+      notify: false
+    });
     const input = event.target.value;
     if (input === '') this.setState({
       decimal: 0
@@ -9916,7 +9920,8 @@ class Converter extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
 
     if (regex.test(input)) {
       this.setState({
-        decimal: 0
+        decimal: 0,
+        notify: true
       });
       throw new Error("Invalid Input. Binary must only consist of 1's and 0's");
     }
@@ -9932,7 +9937,9 @@ class Converter extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   }
 
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_error_message__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Decimal, null, this.state.decimal), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Prompt, null, "Please Enter an 8-Bit Binary Number:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(BinaryInput, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_error_message__WEBPACK_IMPORTED_MODULE_1__.default, {
+      notify: this.state.notify
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Decimal, null, this.state.decimal), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Prompt, null, "Please Enter an 8-Bit Binary Number:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(BinaryInput, {
       onChange: this.binToDec,
       maxLength: "8"
     }));
@@ -9973,14 +9980,16 @@ const Notification = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div`
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   box-shadow: 0 4px 10px rgba(255,175,77,0.9);
   background: #ffaf4d;
-  transition: transform 0.5s linear;
+  transition: transform 0.2s linear;
   transform: ${props => props.notify ? "translateY(110%)" : ''};
 `;
 const Wrap = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.span`
   color: #dc1010;
 `;
 function ErrorMessage(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Notification, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Wrap, null, "Invalid Input."), " Binary consist of 1's and 0's only."));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Notification, {
+    notify: props.notify
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Wrap, null, "Invalid Input."), " Binary consist of 1's and 0's only."));
 }
 
 /***/ })

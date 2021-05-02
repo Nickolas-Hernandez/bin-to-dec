@@ -17,7 +17,7 @@ const Notification = styled.div`
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   box-shadow: 0 4px 10px rgba(255,175,77,0.9);
   background: #ffaf4d;
-  transition: transform 0.5s linear;
+  transition: transform 0.2s linear;
   transform: ${props => props.notify ? "translateY(110%)" : ''};
 `;
 
@@ -27,6 +27,8 @@ const Wrap = styled.span`
 
 export default function ErrorMessage(props){
   return (
-    <Notification><p><Wrap>Invalid Input.</Wrap> Binary consist of 1's and 0's only.</p></Notification>
+    <Notification notify={props.notify}>
+      <p><Wrap>Invalid Input.</Wrap> Binary consist of 1's and 0's only.</p>
+    </Notification>
   );
 }

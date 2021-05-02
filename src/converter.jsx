@@ -43,16 +43,20 @@ const BinaryInput = styled.input`
 export default class Converter extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {decimal: 0}
+    this.state = {
+      decimal: 0,
+      notify: false
+    }
     this.binToDec = this.binToDec.bind(this);
   }
 
   binToDec(event){
+    this.setState({notify: false});
     const input = event.target.value;
     if(input === '') this.setState({decimal: 0});
     const regex = /[^10]/i;
     if(regex.test(input)){
-      this.setState({decimal: 0});
+      this.setState({decimal: 0, notify: true});
       throw new Error("Invalid Input. Binary must only consist of 1's and 0's")
     }
     let decimal = 0;
@@ -65,7 +69,7 @@ export default class Converter extends React.Component {
   render(){
     return (
       <Container>
-        <ErrorMessage />
+        <ErrorMessage notify={this.state.notify}/>
         <Decimal>{this.state.decimal}</Decimal>
         <Prompt>Please Enter an 8-Bit Binary Number:</Prompt>
         <BinaryInput onChange={this.binToDec} maxLength='8'></BinaryInput>
