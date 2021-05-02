@@ -9881,6 +9881,9 @@ const Prompt = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.h2`
   font-size: 24px;
   max-width: 75%;
   text-align: center;
+  @media screen and (min-width: 750px){
+    font-size: 28px;
+  }
 `;
 const BinaryInput = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.input`
   width: 75%;
@@ -9893,6 +9896,8 @@ const BinaryInput = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.input
   margin-top: 1.2rem;
   font-size: 24px;
   font-weight: 500;
+
+
 `;
 class Converter extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   constructor(props) {

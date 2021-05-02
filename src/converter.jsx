@@ -22,6 +22,9 @@ const Prompt = styled.h2`
   font-size: 24px;
   max-width: 75%;
   text-align: center;
+  @media screen and (min-width: 750px){
+    font-size: 28px;
+  }
 `;
 
 const BinaryInput = styled.input`
@@ -35,6 +38,8 @@ const BinaryInput = styled.input`
   margin-top: 1.2rem;
   font-size: 24px;
   font-weight: 500;
+
+
 `;
 
 export default class Converter extends React.Component {
