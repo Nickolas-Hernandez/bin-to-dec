@@ -44,7 +44,10 @@ export default class Converter extends React.Component {
   }
 
   binToDec(){
-
+    binToDec(event){
+    const input = event.target.value;
+    if(input[input.length -])
+    console.log(event.target.value);
   }
 
   render(){
