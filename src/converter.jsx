@@ -37,13 +37,22 @@ const BinaryInput = styled.input`
 `;
 
 export default class Converter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {decimal: 0}
+    this.binToDec = this.binToDec.bind(this);
+  }
+
+  binToDec(){
+
+  }
 
   render(){
     return (
       <Container>
-        <Decimal>0</Decimal>
+        <Decimal>{this.state.decimal}</Decimal>
         <Prompt>Please Enter an 8-Bit Binary Number:</Prompt>
-        <BinaryInput maxLength='8' ></BinaryInput>
+        <BinaryInput onChange={this.binToDec} maxLength='8' ></BinaryInput>
       </Container>
     );
   }

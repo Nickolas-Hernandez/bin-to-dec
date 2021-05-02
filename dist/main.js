@@ -9894,8 +9894,19 @@ const BinaryInput = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.input
   font-weight: 500;
 `;
 class Converter extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      decimal: 0
+    };
+    this.binToDec = this.binToDec.bind(this);
+  }
+
+  binToDec() {}
+
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Decimal, null, "0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Prompt, null, "Please Enter an 8-Bit Binary Number:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(BinaryInput, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Decimal, null, this.state.decimal), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Prompt, null, "Please Enter an 8-Bit Binary Number:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(BinaryInput, {
+      onChange: this.binToDec,
       maxLength: "8"
     }));
   }
