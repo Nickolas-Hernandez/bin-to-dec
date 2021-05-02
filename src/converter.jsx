@@ -43,11 +43,15 @@ export default class Converter extends React.Component {
     this.binToDec = this.binToDec.bind(this);
   }
 
-  binToDec(){
-    binToDec(event){
+  binToDec(event){
     const input = event.target.value;
-    if(input[input.length -])
-    console.log(event.target.value);
+    const regex = /[^10]/i;
+    if(regex.test(input)){
+      console.error('Invalid Input. Please enter a binary number consisting of only 1\'s and 0\'s');
+      this.setState({decimal: 0});
+      return;
+    }
+
   }
 
   render(){
