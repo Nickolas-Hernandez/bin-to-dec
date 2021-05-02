@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import ErrorMessage from './error-message';
 
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  font-size: 64px;
   font-family: 'Quicksand', sans-seriff;
   color: white;
   background: linear-gradient(to top, #F2994A, #F2C94C);
@@ -38,8 +38,6 @@ const BinaryInput = styled.input`
   margin-top: 1.2rem;
   font-size: 24px;
   font-weight: 500;
-
-
 `;
 
 export default class Converter extends React.Component {
@@ -54,9 +52,8 @@ export default class Converter extends React.Component {
     if(input === '') this.setState({decimal: 0});
     const regex = /[^10]/i;
     if(regex.test(input)){
-      console.error('Invalid Input. Please enter a binary number consisting of only 1\'s and 0\'s');
       this.setState({decimal: 0});
-      return;
+      throw new Error("Invalid Input. Binary must only consist of 1's and 0's")
     }
     let decimal = 0;
     for(let i = 0; i < input.length; i++){
@@ -68,6 +65,7 @@ export default class Converter extends React.Component {
   render(){
     return (
       <Container>
+        <ErrorMessage />
         <Decimal>{this.state.decimal}</Decimal>
         <Prompt>Please Enter an 8-Bit Binary Number:</Prompt>
         <BinaryInput onChange={this.binToDec} maxLength='8'></BinaryInput>
