@@ -9884,6 +9884,7 @@ const Prompt = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.h2`
 `;
 const BinaryInput = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.input`
   width: 75%;
+  max-width: 500px;
   height: 30px;
   border: none;
   outline: none;
@@ -9904,6 +9905,9 @@ class Converter extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
 
   binToDec(event) {
     const input = event.target.value;
+    if (input === '') this.setState({
+      decimal: 0
+    });
     const regex = /[^10]/i;
 
     if (regex.test(input)) {

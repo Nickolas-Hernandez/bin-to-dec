@@ -26,6 +26,7 @@ const Prompt = styled.h2`
 
 const BinaryInput = styled.input`
   width: 75%;
+  max-width: 500px;
   height: 30px;
   border: none;
   outline: none;
@@ -45,6 +46,7 @@ export default class Converter extends React.Component {
 
   binToDec(event){
     const input = event.target.value;
+    if(input === '') this.setState({decimal: 0});
     const regex = /[^10]/i;
     if(regex.test(input)){
       console.error('Invalid Input. Please enter a binary number consisting of only 1\'s and 0\'s');
@@ -55,9 +57,8 @@ export default class Converter extends React.Component {
     for(let i = 0; i < input.length; i++){
       decimal = decimal * 2 + parseInt(input[i]);
       this.setState({decimal: decimal});
-  }
     }
-
+  }
 
   render(){
     return (
