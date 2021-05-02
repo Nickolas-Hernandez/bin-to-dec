@@ -9882,9 +9882,22 @@ const Prompt = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.h2`
   max-width: 75%;
   text-align: center;
 `;
+const BinaryInput = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.input`
+  width: 75%;
+  height: 30px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 1.2rem;
+  font-size: 24px;
+  font-weight: 500;
+`;
 class Converter extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Decimal, null, "0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Prompt, null, "Please Enter an 8-Bit Binary Number:"));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Decimal, null, "0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Prompt, null, "Please Enter an 8-Bit Binary Number:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(BinaryInput, {
+      maxLength: "8"
+    }));
   }
 
 }

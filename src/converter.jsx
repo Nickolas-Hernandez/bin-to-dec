@@ -24,6 +24,18 @@ const Prompt = styled.h2`
   text-align: center;
 `;
 
+const BinaryInput = styled.input`
+  width: 75%;
+  height: 30px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 1.2rem;
+  font-size: 24px;
+  font-weight: 500;
+`;
+
 export default class Converter extends React.Component {
 
   render(){
@@ -31,6 +43,7 @@ export default class Converter extends React.Component {
       <Container>
         <Decimal>0</Decimal>
         <Prompt>Please Enter an 8-Bit Binary Number:</Prompt>
+        <BinaryInput maxLength='8' ></BinaryInput>
       </Container>
     );
   }
